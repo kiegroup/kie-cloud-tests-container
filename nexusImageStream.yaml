@@ -1,0 +1,24 @@
+kind: ImageStream
+apiVersion: v1
+metadata:
+  name: nexus-mirror
+  annotations:
+    openshift.io/image.insecureRepository: "true"
+    openshift.io/display-name: Nexus
+    openshift.io/provider-display-name: Nexus
+spec:
+  tags:
+    - name: "latest"
+      annotations:
+        description: Nexus image.
+        iconClass: icon-jboss
+        tags: nexus
+        supports: xpaas:1.4
+        version: "latest"
+      from:
+        kind: DockerImage
+        name: ba-docker-registry.usersys.redhat.com:5000/sonatype/nexus
+      importPolicy:
+        insecure: true
+      referencePolicy:
+        type: Local
