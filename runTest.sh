@@ -10,7 +10,8 @@ if [[ -z "${VERSION}" ]]; then
   VERSION=${VERSION%-?*}
 fi
 
-REPO=https://github.com/jakubschwan/kie-cloud-tests.git
+REPO=https://github.com/kiegroup/kie-cloud-tests.git
+REPO_BRANCH=7.67.x
 FAILSAFE_REPORTS_DIR="kie-cloud-tests/test-cloud/test-cloud-remote/target/failsafe-reports" 
 RESULTS_DIR="${TEST_COLLECT_BASE_DIR:=/data/results}"
 
@@ -31,20 +32,20 @@ fail() {
 }
 
 clone_testsuite() {
-  echo "Clonning the test suite from $REPO:7.67.x-containerized"
-  git clone -q --single-branch -c http.sslVerify=false --branch 7.67.x-containerized ${REPO}
+  echo "Clonning the test suite from $REPO:$REPO_BRANCH"
+  git clone -q --single-branch -c http.sslVerify=false --branch ${REPO_BRANCH} ${REPO}
 }
 
 build_test() {
     echo "Building test framework"
-    mvn clean install -DskipTests --batch-mode | tee -a kie-cloud-test_v7.67.x_build.log
+    mvn clean install -DskipTests --batch-mode | tee -a kie-cloud-test_build.log
 
     echo "Build completed"
 }
 
 run_test() {
   echo "Executing test-cloud-remote"
-  mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} > kie-cloud-test_v7.67.x_run.log -Dcloud.properties.location=/opt/private.properties
+  mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
    
   echo "Tests completed"
 }
@@ -59,8 +60,8 @@ remove_properties_from_test_reports() {
 
 copy_logs_and_reports_to_result_dir() {
   echo "Copy the build log and test log with results to ${RESULTS_DIR}"
-  cp kie-cloud-tests/kie-cloud-test_v7.67.x_build.log "${RESULTS_DIR}"
-  cp kie-cloud-tests/test-cloud/test-cloud-remote/kie-cloud-test_v7.67.x_run.log "${RESULTS_DIR}"
+  cp kie-cloud-tests/kie-cloud-test_build.log "${RESULTS_DIR}"
+  cp kie-cloud-tests/test-cloud/test-cloud-remote/kie-cloud-test_run.log "${RESULTS_DIR}"
   cp -r "${FAILSAFE_REPORTS_DIR}/*" "${RESULTS_DIR}"
   echo "Copy of logs and results is completed"
 }
