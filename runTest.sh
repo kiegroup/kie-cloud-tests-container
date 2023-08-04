@@ -77,6 +77,8 @@ build_test
 
 cd test-cloud/test-cloud-remote
 run_test
+
+cd ~
 remove_properties_from_test_reports
 
 cd ~
