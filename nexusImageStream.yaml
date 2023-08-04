@@ -17,7 +17,7 @@ spec:
         version: "latest"
       from:
         kind: DockerImage
-        name: ba-docker-registry.usersys.redhat.com:5000/sonatype/nexus
+        name: sonatype/nexus
       importPolicy:
         insecure: true
       referencePolicy:
