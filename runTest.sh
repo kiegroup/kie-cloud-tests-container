@@ -56,13 +56,14 @@ remove_properties_from_test_reports() {
   do
     sed -i  "/\<property\>/d" $file
   done
+  echo "Remove propery from reports completed"
 }
 
 copy_logs_and_reports_to_result_dir() {
   echo "Copy the build log and test log with results to ${RESULTS_DIR}"
   cp kie-cloud-tests/kie-cloud-test_build.log "${RESULTS_DIR}"
   cp kie-cloud-tests/test-cloud/test-cloud-remote/kie-cloud-test_run.log "${RESULTS_DIR}"
-  cp -r "${FAILSAFE_REPORTS_DIR}/*" "${RESULTS_DIR}"
+  cp -r "${FAILSAFE_REPORTS_DIR}"/* "${RESULTS_DIR}"
   echo "Copy of logs and results is completed"
 }
 
