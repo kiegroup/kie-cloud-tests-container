@@ -1,5 +1,5 @@
 kind: ImageStream
-apiVersion: v1
+apiVersion: image.openshift.io/v1
 metadata:
   name: nexus-mirror
   annotations:
@@ -17,7 +17,7 @@ spec:
         version: "latest"
       from:
         kind: DockerImage
-        name: sonatype/nexus
+        name: quay.io/jschwan/rhpam-testing-nexus
       importPolicy:
         insecure: true
       referencePolicy:

@@ -45,7 +45,7 @@ build_test() {
 
 run_test() {
   echo "Executing test-cloud-remote"
-  mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
+  mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Pparallel -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
    
   echo "Tests completed"
 }

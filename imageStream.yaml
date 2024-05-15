@@ -16,6 +16,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Business Central image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-businesscentral-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Business Central image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-businesscentral-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Business Central image.
@@ -82,6 +110,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Business Central Monitoring image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-businesscentral-monitoring-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Business Central Monitoring image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-businesscentral-monitoring-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Business Central Monitoring image.
@@ -148,6 +204,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Standalone Controller image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-controller-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Standalone Controller image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-controller-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Standalone Controller image.
@@ -214,6 +298,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Dashbuilder image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-dashbuilder-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Dashbuilder image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-dashbuilder-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Dashbuilder image.
@@ -280,6 +392,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - KIE Server image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-kieserver-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - KIE Server image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-kieserver-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - KIE Server image.
@@ -346,6 +486,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Process Migration image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-process-migration-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Process Migration image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-process-migration-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Process Migration image.
@@ -412,6 +580,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Smart Router image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-smartrouter-rhel8:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Smart Router image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-smartrouter-rhel8:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Smart Router image.
@@ -478,6 +674,34 @@ items:
         openshift.io/provider-display-name: Red Hat, Inc.
     spec:
       tags:
+        - name: '7.13.5'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Operator image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.5'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-rhel8-operator:7.13.5
+        - name: '7.13.4'
+          annotations:
+            description: Red Hat Process Automation Manager 7.13 - Operator image.
+            iconClass: icon-jboss
+            tags: rhpam
+            supports: rhpam:7.13
+            version: '7.13.4'
+          importPolicy:
+            insecure: true
+          referencePolicy:
+            type: Local
+          from:
+            kind: DockerImage
+            name: registry.redhat.io/rhpam-7/rhpam-rhel8-operator:7.13.4
         - name: '7.13.3'
           annotations:
             description: Red Hat Process Automation Manager 7.13 - Operator image.
