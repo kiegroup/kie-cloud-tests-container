@@ -17,8 +17,21 @@ RESULTS_DIR="${TEST_COLLECT_BASE_DIR:=/data/results}"
 
 OCP_URL_SUFFIX=$(oc get ingresscontroller default -n openshift-ingress-operator -o jsonpath='{.status.domain}')
 OCP_API_URL=$(oc whoami --show-server)
-OCP_API_USER=$(oc whoami)
-OCP_API_TOKEN=$(oc whoami -t)
+
+if [[ -z "${ADMIN_USERNAME}" ]]; then
+  echo "'ADMIN_USERNAME' ENV variable is not found - extract it from default oc cmd"
+  OCP_API_USER=$(oc whoami)
+else
+  OCP_API_USER=${ADMIN_USERNAME}
+
+fi
+
+if [[ -z "${ADMIN_PASSWORD}" ]]; then
+  echo "'ADMIN_PASSWORD' ENV variable is not found - extract it from default oc cmd"
+  OCP_API_TOKEN=$(oc whoami -t)
+else
+  OCP_API_PASSWORD=${ADMIN_PASSWORD}
+fi
 
 IMAGE_STREAM_FILE=/opt/imageStream.yaml
 NEXUS_IMAGE_STREAM_FILE=/opt/nexusImageStream.yaml
@@ -45,8 +58,14 @@ build_test() {
 
 run_test() {
   echo "Executing test-cloud-remote"
-  mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Pparallel -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
-   
+  if [ -z "$OCP_API_TOKEN" ]; then
+    echo "Running the tests using the OCP user password"
+    mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Pparallel -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.password=${OCP_API_PASSWORD} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.password=${OCP_API_PASSWORD} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
+  else
+    echo "Running the tests using the OCP user token"
+    mvn clean install --batch-mode -Popenshift-operator -Psmoke -Pinterop -Pparallel -Ddefault.domain.suffix=.${OCP_URL_SUFFIX} -Dgit.provider=Gogs -Dkie.artifact.version=${KIE_VERSION} -Dmaven.test.failure.ignore=true -Dopenshift.master.url=${OCP_API_URL} -Dopenshift.admin.token=${OCP_API_TOKEN} -Dopenshift.admin.username=${OCP_API_USER} -Dopenshift.token=${OCP_API_TOKEN} -Dopenshift.username=${OCP_API_USER} -Dopenshift.namespace.prefix=rhba-interop -Dtemplate.project=jbpm -Dkie.operator.image.tag=${KIE_IMAGE_TAG} -Dkie.image.streams=${IMAGE_STREAM_FILE} -Dnexus.mirror.image.stream=${NEXUS_IMAGE_STREAM_FILE} -Dcloud.properties.location=/opt/private.properties > kie-cloud-test_run.log
+  fi
+
   echo "Tests completed"
 }
 
